@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 const AddProduct = () => {
   const handleAddProduct = (event) => {
     event.preventDefault();
@@ -19,6 +21,9 @@ const AddProduct = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        if(data.insertedId){
+            toast("Data added Successfully!")
+        }
       });
   };
 

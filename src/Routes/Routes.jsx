@@ -22,6 +22,7 @@ export const router = createBrowserRouter([
       {
         path: "/allProduct",
         element: <AllProduct />,
+        loader: () => fetch(`http://localhost:5000/product`)
       },
       {
         path: "/signUp",
