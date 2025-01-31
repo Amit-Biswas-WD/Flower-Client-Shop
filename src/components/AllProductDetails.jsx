@@ -1,9 +1,28 @@
+import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { TbListDetails } from "react-icons/tb";
+import { toast } from "react-toastify";
 
 const AllProductDetails = ({ data }) => {
-  const { _id, productName, price, photo, description } = data;
+  const [users, setUsers] = useState(data);
+  const { _id, productName, price, photo, description } = users;
+
+  const handleDeleteProduct = (id) => {
+    console.log(id);
+    fetch(`http://localhost:5000/product/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.deletedCount) {
+          toast("Product delete successfully!");
+          const remainingUser = users.filter((user) => user._id !== id);
+          setUsers(remainingUser);
+        }
+      });
+  };
   return (
     <div className="border border-green-800 rounded-lg p-4">
       <div className="flex gap-2">
@@ -11,7 +30,10 @@ const AllProductDetails = ({ data }) => {
           <img className="" src={photo} alt="" />
           <div className="absolute top-50 left-82 flex flex-col space-y-4">
             {/* Delete Button */}
-            <div className="relative group">
+            <div
+              onClick={() => handleDeleteProduct(_id)}
+              className="relative group"
+            >
               <MdDeleteForever className="w-10 h-auto bg-red-700 text-white rounded p-2 cursor-pointer" />
               <span className="absolute left-11 top-1/2 -translate-y-1/2 bg-red-600 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition duration-300">
                 Delete

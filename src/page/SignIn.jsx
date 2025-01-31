@@ -17,7 +17,7 @@ const SignIn = () => {
 
   return (
     <div className="container mx-auto">
-      <h2 className="text-2xl font-bold">SignUp Now!</h2>
+      <h2 className="text-2xl font-bold">SignIn</h2>
       <div className="hero bg-base-200 min-h-screen">
         <div className="card bg-base-100 w-full max-w-xl my-8 shrink-0 shadow-2xl">
           <form onSubmit={handleSignInForm} className="card-body">

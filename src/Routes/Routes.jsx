@@ -5,6 +5,7 @@ import AddProduct from "../page/AddProduct";
 import AllProduct from "../page/AllProduct";
 import SignIn from "../page/SignIn";
 import SignUp from "../page/SignUp";
+import AllProductDetails from "../components/AllProductDetails";
 
 export const router = createBrowserRouter([
   {
