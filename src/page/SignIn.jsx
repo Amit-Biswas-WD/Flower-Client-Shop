@@ -60,7 +60,7 @@ const SignIn = () => {
               <button className="btn btn-primary text-white border border-gray-500 px-4 py-2 rounded-lg hover:bg-gray-700">Sign Up</button>
             </div>
             <Link className="text-end my-2" to={`/signUp`}>
-              Click Here to <span className="text-green-700">Sign Up</span>
+              Click Here to <span className="text-gray-700 hover:text-gray-900">Sign Up</span>
             </Link>
           </form>
         </div>
