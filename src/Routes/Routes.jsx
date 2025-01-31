@@ -7,6 +7,7 @@ import SignIn from "../page/SignIn";
 import SignUp from "../page/SignUp";
 import AllProductDetails from "../components/AllProductDetails";
 import Edit from "../components/Edit";
+import UserInfo from "../page/UserInfo";
 
 export const router = createBrowserRouter([
   {
@@ -14,15 +15,11 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/",
-        element: <Home />,
-      },
-      {
         path: "/addProduct",
         element: <AddProduct />,
       },
       {
-        path: "/allProduct",
+        path: "/",
         element: <AllProduct />,
         loader: () => fetch(`http://localhost:5000/product`),
       },
@@ -45,6 +42,11 @@ export const router = createBrowserRouter([
       {
         path: "/signIn",
         element: <SignIn />,
+      },
+      {
+        path: "/userInfo",
+        element: <UserInfo />,
+        loader: () => fetch(`http://localhost:5000/users`),
       },
     ],
   },

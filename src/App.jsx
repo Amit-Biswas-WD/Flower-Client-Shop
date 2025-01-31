@@ -10,15 +10,15 @@ function App() {
             isActive ? "text-blue-500" : "text-gray-700"
           }
         >
-          Home
+          All Product
         </NavLink>
         <NavLink
-          to="/allProduct"
+          to="/userInfo"
           className={({ isActive }) =>
             isActive ? "text-blue-500" : "text-gray-700"
           }
         >
-          All Product
+         UserInfo
         </NavLink>
         <NavLink
           to="/signUp"

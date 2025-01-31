@@ -13,8 +13,20 @@ const SignUp = () => {
     const email = form.email.value;
     const photo = form.photo.value;
     const password = form.password.value;
-    const value = {name, email, photo, password };
+    const value = { name, email, photo, password };
     console.log(value);
+
+    fetch(`http://localhost:5000/users`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(value),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   return (
@@ -83,7 +95,8 @@ const SignUp = () => {
               </button>
             </div>
             <Link className="text-end my-2" to={`/signIn`}>
-              Click Here to <span className="text-blue-600 hover:text-blue-800">Sign In</span>
+              Click Here to{" "}
+              <span className="text-blue-600 hover:text-blue-800">Sign In</span>
             </Link>
           </form>
         </div>

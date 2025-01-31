@@ -34,7 +34,7 @@ const Edit = () => {
 
   return (
     <div>
-        <Link to={`/allProduct`}>
+        <Link to={`/`}>
         <h2 className="text-2xl font-semibold">Go to back Product page</h2></Link>
       <form onSubmit={handleAddProduct} className="fieldset">
         <div className="flex gap-10">

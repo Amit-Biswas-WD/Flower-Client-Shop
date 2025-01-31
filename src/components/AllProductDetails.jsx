@@ -8,7 +8,7 @@ const AllProductDetails = () => {
     <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
      <div>
      <h2>This is Product Details page: {allData.productName}</h2>
-     <Link to={`/allProduct`}><h2 className="text-green-700 text-xl font-semibold">Back to Product Page</h2></Link>
+     <Link to={`/`}><h2 className="text-green-700 text-xl font-semibold">Back to Product Page</h2></Link>
      </div>
       <div className="border border-green-800 rounded-lg p-4">
         <div className="flex gap-2">
