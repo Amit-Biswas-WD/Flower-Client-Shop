@@ -1,74 +1,35 @@
-import { useState } from "react";
-import { FaEdit } from "react-icons/fa";
-import { MdDeleteForever } from "react-icons/md";
-import { TbListDetails } from "react-icons/tb";
-import { toast } from "react-toastify";
+import { Link, useLoaderData } from "react-router-dom";
 
-const AllProductDetails = ({ data }) => {
-  const [users, setUsers] = useState(data);
-  const { _id, productName, price, photo, description } = users;
+const AllProductDetails = () => {
+  const allData = useLoaderData();
+  const { productName, price, photo, description } = allData;
 
-  const handleDeleteProduct = (id) => {
-    console.log(id);
-    fetch(`http://localhost:5000/product/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.deletedCount) {
-          toast("Product delete successfully!");
-          const remainingUser = users.filter((user) => user._id !== id);
-          setUsers(remainingUser);
-        }
-      });
-  };
   return (
-    <div className="border border-green-800 rounded-lg p-4">
-      <div className="flex gap-2">
-        <div className="relative">
-          <img className="" src={photo} alt="" />
-          <div className="absolute top-50 left-82 flex flex-col space-y-4">
-            {/* Delete Button */}
-            <div
-              onClick={() => handleDeleteProduct(_id)}
-              className="relative group"
-            >
-              <MdDeleteForever className="w-10 h-auto bg-red-700 text-white rounded p-2 cursor-pointer" />
-              <span className="absolute left-11 top-1/2 -translate-y-1/2 bg-red-600 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition duration-300">
-                Delete
-              </span>
-            </div>
-
-            {/* Edit Button */}
-            <div className="relative group">
-              <FaEdit className="w-10 h-auto bg-yellow-500 text-white rounded p-2 cursor-pointer" />
-              <span className="absolute left-11 top-1/2 -translate-y-1/2 bg-yellow-500 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition duration-300">
-                Edit
-              </span>
-            </div>
-
-            {/* Details Button */}
-            <div className="relative group">
-              <TbListDetails className="w-10 h-auto bg-blue-700 text-white rounded p-2 cursor-pointer" />
-              <span className="absolute left-11 top-1/2 -translate-y-1/2 bg-blue-600 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition duration-300">
-                Details
-              </span>
-            </div>
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+     <div>
+     <h2>This is Product Details page: {allData.productName}</h2>
+     <Link to={`/allProduct`}><h2 className="text-green-700 text-xl font-semibold">Back to Product Page</h2></Link>
+     </div>
+      <div className="border border-green-800 rounded-lg p-4">
+        <div className="flex gap-2">
+          <img
+            className="w-full h-auto object-cover"
+            src={photo}
+            alt={productName}
+          />
+        </div>
+        <hr className="my-4" />
+        <div>
+          <div className="flex justify-between my-4">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+              {productName}
+            </h2>
+            <h2 className="text-lg font-bold text-green-600 dark:text-green-400">
+              Product $ {price}
+            </h2>
           </div>
+          <p>{description}</p>
         </div>
-      </div>
-      <hr className="my-4" />
-      <div>
-        <div className="flex justify-between my-4">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-            {productName}
-          </h2>
-          <h2 className="text-lg font-bold text-green-600 dark:text-green-400">
-            Product $ {price}
-          </h2>
-        </div>
-        <p>{description}</p>
       </div>
     </div>
   );
